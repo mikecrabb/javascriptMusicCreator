@@ -1,0 +1,105 @@
+<html>
+<header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+var C = [261.626, 329.628, 391.995];
+var G = [391.995, 493.883, 587.330];
+var F = [349.228, 440.000, 523.251];
+
+function Cmusic(){
+var selectedNoteNumber = Math.floor((Math.random() * 3));
+var selectedNote = C[selectedNoteNumber];
+var note = new Pizzicato.Sound({
+        source: 'wave',
+        options: {frequency: selectedNote }
+});
+note.play();
+
+setTimeout(function(){
+  note.stop();
+},500);
+}
+
+function Fmusic(){
+var selectedNoteNumber = Math.floor((Math.random() * 3));
+var selectedNote = F[selectedNoteNumber];
+var note = new Pizzicato.Sound({
+        source: 'wave',
+        options: {frequency: selectedNote }
+});
+note.play();
+
+setTimeout(function(){
+  note.stop();
+},500);
+}
+
+function Gmusic(){
+var selectedNoteNumber = Math.floor((Math.random() * 3));
+var selectedNote = G[selectedNoteNumber];
+var note = new Pizzicato.Sound({
+        source: 'wave',
+        options: {frequency: selectedNote }
+});
+note.play();
+
+setTimeout(function(){
+  note.stop();
+},500);
+}
+
+var chordProgression = [
+  C,C,C,C,C,C,C,C,
+  F,F,F,F,F,F,F,F,
+  C,C,C,C,C,C,C,C,
+  F,F,G,G,C,C,C,C
+]
+ i = 0;
+function playMusic(){
+  setTimeout(function(){
+    chord = chordProgression[i];
+    switch(chord) {
+        case C:
+            Cmusic();
+            console.log("C");
+            break;
+        case F:
+            Fmusic();
+            console.log("F");
+            break;
+        case G:
+            Gmusic();
+            console.log("G");
+            break;
+        default:
+        console.log("broken");
+            break;
+    }
+    i++;
+    if (i < chordProgression.length){
+    playMusic();
+  }
+  },500);
+}
+
+</script>
+
+<title>Javascript Music Maker</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+</header>
+
+<body>
+<div class="container">
+  <h1>Demo 1 - Standard Music Creation</h1>
+  <button onclick="playMusic()" class="waves-effect waves-light btn">Create Music</button>
+
+</div>
+</body>
+</html>

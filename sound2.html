@@ -1,0 +1,125 @@
+<html>
+<header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <script>
+    var x;
+    var y;
+    var C = [261.626, 329.628, 391.995, 523.251, 659.255, 783.991, 1046.50];
+    var G = [246.942, 391.995, 493.883, 587.330, 783.991, 987.767, 1174.66];
+    var F = [261.626, 349.228, 440.000, 523.251, 698.456, 880.000, 1046.50];
+    var Am = [220.000, 261.626, 329.628, 440.000, 523.251, 659.255, 880.000];
+    var Em = [246.942, 329.628, 391.995, 493.883, 659.255, 783.991, 987.767];
+
+    function getBassNote(chord) {
+      console.log("Note Requested " + chord)
+      var noteArray = {
+        C: 130.813,
+        G: 195.998,
+        F: 174.614,
+        Am: 110.000,
+        Em: 164.814
+      };
+      return noteArray[chord];
+    }
+
+    function playNote(chord, range) {
+
+      var bassSelected = chord;
+      if (range > 500) {
+        var lowNote = 0;
+      } else if (range > 300) {
+        var lowNote = 2;
+      } else if (range > 0) {
+        var lowNote = 4;
+      }
+
+      var selectedNoteNumber = Math.floor(Math.random() * 3) + lowNote;
+      var selectedNote = eval(chord)[selectedNoteNumber];
+      var note = new Pizzicato.Sound({
+        source: 'wave',
+        options: {
+          frequency: selectedNote
+        }
+      });
+      note.play();
+
+
+      var bassNote = new Pizzicato.Sound({
+        source: 'wave',
+        options: {
+          frequency: getBassNote(bassSelected)
+        }
+      });
+      bassNote.play();
+
+      setTimeout(function() {
+        note.stop();
+        bassNote.stop();
+      }, 500);
+    }
+
+    var chordProgression = [
+      "C", "C", "C", "C",
+      "G", "G", "G", "G",
+      "Am", "Am", "Am", "Am",
+      "Em", "Em", "Em", "Em",
+      "F", "F", "F", "F",
+      "C", "C", "C", "C",
+      "F", "F", "F", "F",
+      "G", "G", "G", "G"
+    ]
+    i = 0;
+
+    function playMusic() {
+      setTimeout(function() {
+        if (i >= chordProgression.length) {
+          i = 0;
+        }
+        var chord = chordProgression[i];
+        playNote(chord, y);
+        i++;
+        playMusic();
+      }, 500);
+    }
+
+    function showCoords(event) {
+      x = event.clientX;
+      y = event.clientY;
+      var coor = "X coords: " + x + ", Y coords: " + y;
+      document.getElementById("musicDisplay").innerHTML = coor;
+    }
+  </script>
+  <style>
+    #musicBox {
+      width: 200px;
+      height: 600px;
+      border: 1px solid black;
+    }
+  </style>
+</header>
+
+<title>Javascript Music Maker</title>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+<body>
+  <div class="container">
+    <h1>Demo 2 - Mouse User Input</h1>
+
+
+    <body>
+      <div id="musicBox" onmousemove="showCoords(event)">
+      </div>
+      <div id=musicDisplay></div>
+
+      <button onclick="playMusic()" class="waves-effect waves-light btn">Lets Get Classical</button>
+
+  </div>
+  </body>
+
+</html>
