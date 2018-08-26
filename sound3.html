@@ -2,7 +2,7 @@
 <header>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://js.leapmotion.com/leap-0.6.3.min.js"></script>
+  <script src="leap-0.6.3.min.js"></script>
 
   <script>
     var x;
@@ -12,10 +12,7 @@
     var F = [261.626, 349.228, 440.000, 523.251, 698.456, 880.000, 1046.50];
     var Am = [220.000, 261.626, 329.628, 440.000, 523.251, 659.255, 880.000];
     var Em = [246.942, 329.628, 391.995, 493.883, 659.255, 783.991, 987.767];
-
-
     var yPos;
-
     // Store frame for motion functions
     var previousFrame = null;
 
@@ -31,11 +28,14 @@
 
       // Display Hand object data
       var handOutput = document.getElementById("handData");
+
       var handString = "";
       if (frame.hands.length > 0) {
         for (var i = 0; i < frame.hands.length; i++) {
           var hand = frame.hands[i];
           yPos = hand.palmPosition[1];
+          console.log("yPos is" + yPos);
+
           handString += "Position = " + yPos;
           document.getElementById("musicLine").style.marginTop = 600 - yPos + "px";
 
@@ -178,7 +178,7 @@
       <h1>Demo 3 - Leap Motion User Input</h1>
 
 
-      <div id="handData">
+      <div id="handData">Open
       </div>
       <div id=musicDisplay></div>
       <div id="musicBox">

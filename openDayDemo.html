@@ -1,0 +1,41 @@
+<html>
+<header>
+  <title>Javascript Music Maker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.1/Pizzicato.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="leap-0.6.3.min.js"></script>
+  <script type="text/javascript" src="scripts/leap_music.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link rel="stylesheet" href="style/main.css">
+
+
+  <body class="full-height">
+    <div class="container">
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">JavaScript + Leap Motion Music Creator</h5>
+        <p class="card-text">This demo makes it possible for a user to create music from the height of their hand above the keyboard. Javascript has been used to create a small program that takes the position of a users hand and works out which musical notes would create the best tune based on a pre-existing chord pattern.</p>
+                <div id="handData">Ready to start...</div>
+        <button type="button" class="btn btn-raised btn-primary" onclick="playMusic()" class="waves-effect waves-light btn">Start Music</button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col full-height">
+    <div id=musicDisplay></div>
+    <div id="musicBox">
+      <div id="musicLine"></div>
+      <div id="highNotes"></div>
+      <div id="lowNotes"></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </body>
+
+</html>

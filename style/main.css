@@ -1,0 +1,36 @@
+#musicBox {
+  width: 200px;
+  height: 600px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+#musicLine {
+  width: 196px;
+  height: 0px;
+  border: 2px solid red;
+  margin: 0px;
+  position: absolute;
+}
+
+#highNotes {
+  height: 200px;
+  width: 198px;
+  background-color: #cccccc;
+
+}
+
+#lowNotes {
+  height: 198px;
+  width: 198px;
+  margin-top: 200px;
+  background-color: #dddddd;
+}
+
+.btn {
+  margin-top: 30px;
+}
+
+body{
+  padding-top: 50px;
+}
